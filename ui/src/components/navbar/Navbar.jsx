@@ -1,9 +1,31 @@
 import "./Navbar.scss";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
+  const [active, setActive] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const isActive = () => {
+    window.screenY > 0 ? setActive(true) : setActive(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", isActive);
+
+    return () => {
+      window.removeEventListener("scroll", isActive);
+    };
+  }, []);
+
+  const currentUser = {
+    id: 1,
+    username: "John Doe",
+    isSeller: true,
+  };
+
   return (
-    <div className="navbar">
+    <div className={active ? "navbar active" : "navbar"}>
       <div className="container">
         <div className="logo">
           {/* <Link to="/"> */}
@@ -16,12 +38,42 @@ const Navbar = () => {
           <span>Explore</span>
           <span>English</span>
           <span>Sign In</span>
-          <span>Become a Seller</span>
-          <button>Join</button>
+          {!currentUser?.isSeller && <span>Become a Seller</span>}
+          {!currentUser && <button>Join</button>}
+          {currentUser && (
+            <div className="user" onClick={() => setOpen(!open)}>
+              <img
+                src="https://images.pexels.com/photos/733767/pexels-photo-733767.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                alt=""
+              />
+              <span>{currentUser?.username}</span>
+              {open && (
+                <div className="options">
+                  {currentUser?.isSeller && (
+                    <>
+                      <span>Gigs</span>
+                      <span>Add New Gig</span>
+                    </>
+                  )}
+                  <span>Orders</span>
+                  <span>Messages</span>
+                  <span>Logout</span>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
 
-      <hr />
+      {active && (
+        <>
+          <hr />
+          <div className="menu">
+            <span>Test</span>
+            <span>Test2</span>
+          </div>
+        </>
+      )}
     </div>
   );
 };

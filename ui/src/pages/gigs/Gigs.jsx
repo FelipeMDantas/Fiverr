@@ -1,4 +1,4 @@
-import "/.Gigs.scss";
+import "./Gigs.scss";
 
 const Gigs = () => {
   return <div className="gigs">Gigs</div>;

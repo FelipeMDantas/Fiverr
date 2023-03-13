@@ -1,4 +1,4 @@
-import "/.Message.scss";
+import "./Message.scss";
 
 const Message = () => {
   return <div className="message">Message</div>;
