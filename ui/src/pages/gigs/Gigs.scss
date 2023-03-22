@@ -78,7 +78,7 @@
         padding: 20px;
         background-color: white;
         border-radius: 5px;
-        border: .5px solid lightgray;
+        border: 0.5px solid lightgray;
         position: absolute;
         top: 30px;
         right: 0;
@@ -86,7 +86,17 @@
         flex-direction: column;
         gap: 20px;
         color: #555;
+
+        span {
+          cursor: pointer;
+        }
       }
     }
+  }
+
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
 }
