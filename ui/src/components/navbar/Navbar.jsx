@@ -77,41 +77,40 @@ const Navbar = () => {
         </div>
       </div>
 
-      {active ||
-        (pathname !== "/" && (
-          <>
-            <hr />
-            <div className="menu">
-              <Link className="link menuLink" to="/">
-                Graphic & Design
-              </Link>
-              <Link className="link" to="/">
-                Video & Animation
-              </Link>
-              <Link className="link" to="/">
-                Writing & Translation
-              </Link>
-              <Link className="link" to="/">
-                AI Services
-              </Link>
-              <Link className="link" to="/">
-                Digital Marketing
-              </Link>
-              <Link className="link" to="/">
-                Music & Audio
-              </Link>
-              <Link className="link" to="/">
-                Programming & Tech
-              </Link>
-              <Link className="link" to="/">
-                Business
-              </Link>
-              <Link className="link" to="/">
-                Lifestyle
-              </Link>
-            </div>
-          </>
-        ))}
+      {(active || pathname !== "/") && (
+        <>
+          <hr />
+          <div className="menu">
+            <Link className="link menuLink" to="/">
+              Graphic & Design
+            </Link>
+            <Link className="link" to="/">
+              Video & Animation
+            </Link>
+            <Link className="link" to="/">
+              Writing & Translation
+            </Link>
+            <Link className="link" to="/">
+              AI Services
+            </Link>
+            <Link className="link" to="/">
+              Digital Marketing
+            </Link>
+            <Link className="link" to="/">
+              Music & Audio
+            </Link>
+            <Link className="link" to="/">
+              Programming & Tech
+            </Link>
+            <Link className="link" to="/">
+              Business
+            </Link>
+            <Link className="link" to="/">
+              Lifestyle
+            </Link>
+          </div>
+        </>
+      )}
     </div>
   );
 };
