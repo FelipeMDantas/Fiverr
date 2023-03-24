@@ -15,6 +15,7 @@ const Gig = () => {
             <img
               src="https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600"
               alt=""
+              className="pp"
             />
             <span>John Doe</span>
             <div className="stars">
@@ -26,7 +27,7 @@ const Gig = () => {
               <span>5</span>
             </div>
           </div>
-          <Slider slidesToShow={1} arrowsScroll={1}>
+          <Slider slidesToShow={1} arrowsScroll={1} className="slider">
             <img
               src="https://images.pexels.com/photos/1074535/pexels-photo-1074535.jpeg?auto=compress&cs=tinysrgb&w=1600"
               alt=""
@@ -115,12 +116,13 @@ const Gig = () => {
                 <img
                   src="https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600"
                   alt=""
+                  className="pp"
                 />
                 <div className="info">
                   <span>John Doe</span>
                   <div className="country">
                     <img
-                      src="https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                      src="https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1fa-1f1f8.png"
                       alt=""
                     />
                     <span>United States</span>
@@ -144,7 +146,7 @@ const Gig = () => {
                 gig, and know already that Ill be using it again very very soon
               </p>
               <div className="helpful">
-                <span>helpful</span>
+                <span>Helpful?</span>
                 <img src="/img/like.png" alt="" />
                 <span>Yes</span>
                 <img src="/img/dislike.png" alt="" />
@@ -157,6 +159,7 @@ const Gig = () => {
                 <img
                   src="https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600"
                   alt=""
+                  className="pp"
                 />
                 <div className="info">
                   <span>John Doe</span>
@@ -186,7 +189,7 @@ const Gig = () => {
                 gig, and know already that Ill be using it again very very soon
               </p>
               <div className="helpful">
-                <span>helpful</span>
+                <span>Helpful?</span>
                 <img src="/img/like.png" alt="" />
                 <span>Yes</span>
                 <img src="/img/dislike.png" alt="" />
@@ -199,6 +202,7 @@ const Gig = () => {
                 <img
                   src="https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600"
                   alt=""
+                  className="pp"
                 />
                 <div className="info">
                   <span>John Doe</span>
@@ -228,7 +232,7 @@ const Gig = () => {
                 gig, and know already that Ill be using it again very very soon
               </p>
               <div className="helpful">
-                <span>helpful</span>
+                <span>Helpful?</span>
                 <img src="/img/like.png" alt="" />
                 <span>Yes</span>
                 <img src="/img/dislike.png" alt="" />
@@ -237,7 +241,45 @@ const Gig = () => {
             </div>
           </div>
         </div>
-        <div className="right"></div>
+        <div className="right">
+          <div className="price">
+            <h3>1 AI generated image</h3>
+            <h2>$59.99</h2>
+          </div>
+          <p>
+            I will create a unique high quality AI generated image based on a
+            description that you give me
+          </p>
+          <div className="details">
+            <div className="item">
+              <img src="/img/clock.png" alt="" />
+              <span>2 days Delivery</span>
+            </div>
+            <div className="item">
+              <img src="/img/recycle.png" alt="" />
+              <span>3 Revisions</span>
+            </div>
+          </div>
+          <div className="features">
+            <div className="item">
+              <img src="/img/greencheck.png" alt="" />
+              <span>Prompt writing</span>
+            </div>
+            <div className="item">
+              <img src="/img/greencheck.png" alt="" />
+              <span>Prompt writing</span>
+            </div>
+            <div className="item">
+              <img src="/img/greencheck.png" alt="" />
+              <span>Prompt writing</span>
+            </div>
+            <div className="item">
+              <img src="/img/greencheck.png" alt="" />
+              <span>Prompt writing</span>
+            </div>
+          </div>
+          <button>Continue</button>
+        </div>
       </div>
     </div>
   );
