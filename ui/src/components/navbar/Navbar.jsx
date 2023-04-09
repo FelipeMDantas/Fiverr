@@ -1,6 +1,7 @@
 import "./Navbar.scss";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import newRequest from "../../utils/newRequest";
 
 const Navbar = () => {
   const [active, setActive] = useState(false);
@@ -20,10 +21,17 @@ const Navbar = () => {
     };
   }, []);
 
-  const currentUser = {
-    id: 1,
-    username: "John Doe",
-    isSeller: true,
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await newRequest.post("/auth/logout");
+      localStorage.setItem("currentUser", null);
+      navigate("/login");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -44,10 +52,7 @@ const Navbar = () => {
           {!currentUser && <button>Join</button>}
           {currentUser && (
             <div className="user" onClick={() => setOpen(!open)}>
-              <img
-                src="https://images.pexels.com/photos/733767/pexels-photo-733767.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt=""
-              />
+              <img src={currentUser.img || "/img/noavatar.jpg"} alt="" />
               <span>{currentUser?.username}</span>
               {open && (
                 <div className="options">
@@ -67,7 +72,7 @@ const Navbar = () => {
                   <Link className="link" to="/messages">
                     Messages
                   </Link>
-                  <Link className="link" to="/">
+                  <Link className="link" onClick={handleLogout}>
                     Logout
                   </Link>
                 </div>
