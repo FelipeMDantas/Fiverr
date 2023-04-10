@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./Register.scss";
-import axios from "axios";
+import upload from "../../utils/upload";
+import newRequest from "../../utils/newRequest";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [file, setFile] = useState(null);
@@ -14,20 +16,7 @@ const Register = () => {
     desc: "",
   });
 
-  const upload = async (file) => {
-    const data = new FormData();
-    data.append("file", file);
-    data.append("upload_preset", "fiverr");
-
-    try {
-      const res = await axios.post(
-        "https://api.cloudinary.com/v1_1/dcoyppvdi/image",
-        data
-      );
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setUser((prev) => {
@@ -41,9 +30,24 @@ const Register = () => {
     });
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const url = await upload(file);
+    try {
+      await newRequest.post("/auth/register", {
+        ...user,
+        img: url,
+      });
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="register">
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="left">
           <h1>Create a new account</h1>
           <label htmlFor="">Username</label>
@@ -65,7 +69,12 @@ const Register = () => {
           <label htmlFor="">Profile Picture</label>
           <input type="file" onChange={(e) => setFile(e.target.files[0])} />
           <label htmlFor="">Country</label>
-          <input type="text" name="country" placeholder="USA" />
+          <input
+            type="text"
+            name="country"
+            placeholder="USA"
+            onChange={handleChange}
+          />
           <button type="submit">Register</button>
         </div>
         <div className="right">
