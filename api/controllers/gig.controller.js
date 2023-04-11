@@ -17,6 +17,44 @@ export const createGig = async (req, res, next) => {
     next(err);
   }
 };
-export const deleteGig = async (req, res, next) => {};
-export const getGig = async (req, res, next) => {};
-export const getGigs = async (req, res, next) => {};
+
+export const deleteGig = async (req, res, next) => {
+  try {
+    const gig = await Gig.findById(req.params.id);
+
+    if (gig.userId !== req.userId)
+      return next(createError(403, "You cannot delete others' gigs."));
+
+    await Gig.findByIdAndDelete(req.params.id);
+    res.status(200).send("Gig has been deleted.");
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const getGig = async (req, res, next) => {
+  try {
+    const gig = await Gig.findById(req.params.id);
+
+    if (!gig) next(createError(404, "Gig not found."));
+    res.status(200).send(gig);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const getGigs = async (req, res, next) => {
+  const q = req.query;
+  const filters = {
+    cat: q.cat,
+    price: { $gt: 100 },
+    title: { $regex: "Gig 2" },
+  };
+
+  try {
+    const gigs = await Gig.find();
+    res.status(200).send(gigs);
+  } catch (err) {
+    next(err);
+  }
+};
