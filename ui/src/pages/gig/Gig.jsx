@@ -28,6 +28,8 @@ const Gig = () => {
       }),
   });
 
+  console.log(data);
+
   return (
     <div className="gig">
       {isLoading ? (
@@ -138,7 +140,7 @@ const Gig = () => {
             <div className="details">
               <div className="item">
                 <img src="/img/clock.png" alt="" />
-                <span>{data.deliveryDate} days Delivery</span>
+                <span>{data.deliveryDate} Days Delivery</span>
               </div>
               <div className="item">
                 <img src="/img/recycle.png" alt="" />
