@@ -32,6 +32,7 @@ const Gigs = () => {
 
   useEffect(() => {
     refetch();
+    console.log(data);
   }, [sort]);
 
   const apply = () => {
@@ -51,8 +52,8 @@ const Gigs = () => {
         <div className="menu">
           <div className="left">
             <span>Budged</span>
-            <input ref={minRef} type="text" placeholder="min" />
-            <input ref={maxRef} type="text" placeholder="max" />
+            <input ref={minRef} type="number" placeholder="min" />
+            <input ref={maxRef} type="number" placeholder="max" />
             <button onClick={apply}>Apply</button>
           </div>
           <div className="right">
