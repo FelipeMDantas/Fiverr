@@ -9,6 +9,8 @@ import Orders from "./pages/orders/Orders";
 import Messages from "./pages/messages/Messages";
 import Message from "./pages/message/Message";
 import MyGigs from "./pages/myGigs/MyGigs";
+import Pay from "./pages/pay/Pay";
+import Success from "./pages/success/Success";
 import "./app.scss";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
@@ -76,6 +78,14 @@ function App() {
         {
           path: "/register",
           element: <Register />,
+        },
+        {
+          path: "/pay/:id",
+          element: <Pay />,
+        },
+        {
+          path: "/success",
+          element: <Success />,
         },
       ],
     },
