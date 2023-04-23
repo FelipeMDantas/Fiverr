@@ -19,7 +19,7 @@ const Messages = () => {
 
   const mutation = useMutation({
     mutationFn: (id) => {
-      return newRequest.post(`/conversations${id}`);
+      return newRequest.put(`/conversations/${id}`);
     },
 
     onSuccess: () => {
