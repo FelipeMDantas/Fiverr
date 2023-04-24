@@ -26,7 +26,9 @@ const MyGigs = () => {
     },
   });
 
-  const handleDelete = async () => {};
+  const handleDelete = async (id) => {
+    mutation.mutate(id);
+  };
 
   return (
     <div className="myGigs">
@@ -52,26 +54,24 @@ const MyGigs = () => {
               <th>Sales</th>
               <th>Action</th>
             </tr>
-            <tr>
-              <td>
-                <img
-                  src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                  alt=""
-                  className="img"
-                />
-              </td>
-              <td>Gig1</td>
-              <td>88</td>
-              <td>123</td>
-              <td>
-                <img
-                  src="/img/delete.png"
-                  alt=""
-                  className="delete"
-                  onClick={handleDelete}
-                />
-              </td>
-            </tr>
+            {data.map((gig) => (
+              <tr key={gig._id}>
+                <td>
+                  <img src={gig.cover} alt="" className="img" />
+                </td>
+                <td>{gig.title}</td>
+                <td>{gig.price}</td>
+                <td>{gig.sales}</td>
+                <td>
+                  <img
+                    src="/img/delete.png"
+                    alt=""
+                    className="delete"
+                    onClick={() => handleDelete(gig._id)}
+                  />
+                </td>
+              </tr>
+            ))}
           </table>
         </div>
       )}
