@@ -1,6 +1,7 @@
 import { useReducer, useState } from "react";
 import "./Add.scss";
 import { gigReducer, INITIAL_STATE } from "../../reducers/gigReducer";
+import upload from "../../utils/upload";
 
 const Add = () => {
   const [singleFile, setSingleFile] = useState(undefined);
@@ -14,6 +15,33 @@ const Add = () => {
       type: "CHANGE_INPUT",
       payload: { name: e.target.name, value: e.target.value },
     });
+  };
+
+  const handleFeature = (e) => {
+    e.preventDefault();
+    dispatch({
+      type: "ADD_FEATURE",
+      payload: e.target[0].value,
+    });
+    e.target.value = "";
+  };
+
+  const handleUpload = async (e) => {
+    setUploading(true);
+
+    try {
+      const cover = await upload(singleFile);
+      const images = await Promise.all(
+        [...files].map(async (file) => {
+          const url = await upload(file);
+          return url;
+        })
+      );
+      setUploading(false);
+      dispatch({ type: "ADD_IMAGES", payload: { cover, images } });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -37,9 +65,16 @@ const Add = () => {
               <option value="music">Music</option>
             </select>
             <label htmlFor="">Cover Images</label>
-            <input type="file" />
+            <input
+              type="file"
+              onChange={(e) => setSingleFile(e.target.files[0])}
+            />
             <label htmlFor="">Upload Images</label>
-            <input type="file" multiple />
+            <input
+              type="file"
+              multiple
+              onChange={(e) => setFiles(e.target.files)}
+            />
             <label htmlFor="">Description</label>
             <textarea
               name="desc"
@@ -76,7 +111,10 @@ const Add = () => {
               onChange={handleChange}
             />
             <label htmlFor="">Add features</label>
-            <input type="text" placeholder="e.g.: page design" />
+            <form action="" onSubmit={handleFeature}>
+              <input type="text" placeholder="e.g.: page design" />
+              <button type="submit">add</button>
+            </form>
             <label htmlFor="">Price</label>
             <input type="number" onChange={handleChange} name="price" />
           </div>
