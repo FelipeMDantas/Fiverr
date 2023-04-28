@@ -64,17 +64,22 @@ const Add = () => {
               <option value="animation">Animation</option>
               <option value="music">Music</option>
             </select>
-            <label htmlFor="">Cover Images</label>
-            <input
-              type="file"
-              onChange={(e) => setSingleFile(e.target.files[0])}
-            />
-            <label htmlFor="">Upload Images</label>
-            <input
-              type="file"
-              multiple
-              onChange={(e) => setFiles(e.target.files)}
-            />
+            <div className="images">
+              <div className="imagesInputs">
+                <label htmlFor="">Cover Images</label>
+                <input
+                  type="file"
+                  onChange={(e) => setSingleFile(e.target.files[0])}
+                />
+                <label htmlFor="">Upload Images</label>
+                <input
+                  type="file"
+                  multiple
+                  onChange={(e) => setFiles(e.target.files)}
+                />
+              </div>
+              <button>{uploading ? "uploading" : "Upload"}</button>
+            </div>
             <label htmlFor="">Description</label>
             <textarea
               name="desc"
@@ -111,7 +116,7 @@ const Add = () => {
               onChange={handleChange}
             />
             <label htmlFor="">Add features</label>
-            <form action="" onSubmit={handleFeature}>
+            <form action="" onSubmit={handleFeature} className="add">
               <input type="text" placeholder="e.g.: page design" />
               <button type="submit">add</button>
             </form>
