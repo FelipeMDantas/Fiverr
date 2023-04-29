@@ -120,6 +120,15 @@ const Add = () => {
               <input type="text" placeholder="e.g.: page design" />
               <button type="submit">add</button>
             </form>
+            <div className="addedFeatures">
+              {state?.features?.map((f) => (
+                <div className="item">
+                  <button>
+                    feature <span>X</span>
+                  </button>
+                </div>
+              ))}
+            </div>
             <label htmlFor="">Price</label>
             <input type="number" onChange={handleChange} name="price" />
           </div>
