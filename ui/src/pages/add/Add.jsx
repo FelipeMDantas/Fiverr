@@ -2,6 +2,9 @@ import { useReducer, useState } from "react";
 import "./Add.scss";
 import { gigReducer, INITIAL_STATE } from "../../reducers/gigReducer";
 import upload from "../../utils/upload";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import newRequest from "../../utils/newRequest";
+import { useNavigate } from "react-router-dom";
 
 const Add = () => {
   const [singleFile, setSingleFile] = useState(undefined);
@@ -23,7 +26,7 @@ const Add = () => {
       type: "ADD_FEATURE",
       payload: e.target[0].value,
     });
-    e.target.value = "";
+    e.target[0].value = "";
   };
 
   const handleUpload = async (e) => {
@@ -42,6 +45,26 @@ const Add = () => {
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const navigate = useNavigate();
+
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: (gig) => {
+      return newRequest.post("/gigs", gig);
+    },
+
+    onSuccess: () => {
+      queryClient.invalidateQueries(["myGigs"]);
+    },
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    mutation.mutate(state);
+    navigate("/mygigs");
   };
 
   return (
@@ -78,7 +101,9 @@ const Add = () => {
                   onChange={(e) => setFiles(e.target.files)}
                 />
               </div>
-              <button>{uploading ? "uploading" : "Upload"}</button>
+              <button onClick={handleUpload}>
+                {uploading ? "uploading" : "Upload"}
+              </button>
             </div>
             <label htmlFor="">Description</label>
             <textarea
@@ -89,7 +114,7 @@ const Add = () => {
               placeholder="Bried descriptions to introduce your services to customers"
               onChange={handleChange}
             ></textarea>
-            <button>Create</button>
+            <button onClick={handleSubmit}>Create</button>
           </div>
           <div className="right">
             <label htmlFor="">Service Title</label>
@@ -97,6 +122,7 @@ const Add = () => {
               type="text"
               name="shortTitle"
               placeholder="e.g.: One-page web design"
+              onChange={handleChange}
             />
             <label htmlFor="">Short Description</label>
             <textarea
@@ -122,9 +148,14 @@ const Add = () => {
             </form>
             <div className="addedFeatures">
               {state?.features?.map((f) => (
-                <div className="item">
-                  <button>
-                    feature <span>X</span>
+                <div className="item" key={f}>
+                  <button
+                    onClick={() =>
+                      dispatch({ type: "REMOVE_FEATURE", payload: f })
+                    }
+                  >
+                    {f}
+                    <span>X</span>
                   </button>
                 </div>
               ))}
