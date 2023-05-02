@@ -21,7 +21,12 @@ A couple of technologies were employed in this project. Among them:
 - [Sass] - a CSS extension language
 - [React Router DOM] - DOM bindings for React Router
 - [Moment] - a date library for parsing, validating, manipulating, and formatting dates
-- [Infinite-React-Carousel] - provides infinite carousel for react.
+- [Infinite-React-Carousel] - provides infinite carousel for react
+- [React Query] - an asynchronous state management for React
+- [Stripe] - a suite of APIs powering online payment processing
+- [JSON Web Token] - an open method for representing claims securely between two parties
+- [Bcrypt] - a library for passwords hashing
+- [Cookie-Parser] - parses Cookie header and populates req.cookies with an object keyed by the cookie names
 - [Axios] - a promise-based HTTP Client for NodeJS and the browser
 - [NodeJS] - an asynchronous event-driven JavaScript runtime environment
 - [MongoDB] - a NoSQL source-available cross-platform document-oriented database program
@@ -39,6 +44,11 @@ A couple of technologies were employed in this project. Among them:
   [react router dom]: https://reactrouter.com/
   [moment]: https://github.com/moment/moment
   [infinite-react-carousel]: https://www.npmjs.com/package/infinite-react-carousel
+  [react query]: https://tanstack.com/query/v3/
+  [stripe]: https://stripe.com/
+  [json web token]: https://jwt.io/
+  [bcrypt]: https://www.npmjs.com/package/bcrypt
+  [cookie-parser]: https://github.com/expressjs/cookie-parser
   [axios]: https://axios-http.com/docs/intro
   [nodejs]: https://nodejs.org/en/
   [mongodb]: https://www.mongodb.com/
