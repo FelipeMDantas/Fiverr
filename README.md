@@ -12,6 +12,10 @@
 
 > A full-stack app that comprises, among other things, sign in, sign out, gig addition, gig information fetch, filtering and sort, chat, reviews, and the use of an integrated purchase system.
 
+### Take a look at the page
+
+<img src = images/page_gif.gif>
+
 ## Tech
 
 A couple of technologies were employed in this project. Among them:
@@ -31,7 +35,7 @@ A couple of technologies were employed in this project. Among them:
 - [NodeJS] - an asynchronous event-driven JavaScript runtime environment
 - [MongoDB] - a NoSQL source-available cross-platform document-oriented database program
 - [Express] - a NodeJS web application framework that provides a robust set of features for web and mobile applications
-- [Dotenv] - a module that loads environment variables from a .env file into process.env.
+- [Dotenv] - a module that loads environment variables from a .env file into process.env
 - [Nodemon] - a tool that automatically restarts the NodeJS application when file changes in the directory are detected
 - [Mongoose] - a schema-based solution to model application data
 - [CORS] - provides an Express middleware that can be used to enable CORS with various options
